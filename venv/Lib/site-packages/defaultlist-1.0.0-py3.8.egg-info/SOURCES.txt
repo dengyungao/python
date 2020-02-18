@@ -1,0 +1,9 @@
+README.rst
+defaultlist.py
+setup.cfg
+setup.py
+defaultlist.egg-info/PKG-INFO
+defaultlist.egg-info/SOURCES.txt
+defaultlist.egg-info/dependency_links.txt
+defaultlist.egg-info/requires.txt
+defaultlist.egg-info/top_level.txt

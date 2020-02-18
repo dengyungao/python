@@ -1,0 +1,174 @@
+内容回顾：
+		1.外键的变种
+			- 一对多或多对一
+				多的要设置外键
+			- 多对多
+				创建第三张表，与另外两张表进行关联
+			- 一对一
+				有外键的字段设置unique
+		2.单表查询
+			select 字段1，字段2 from 表名 where id > 3 group by post having post='xxx' order by id desc limit 2
+
+今日内容：
+		1.多表查询
+
+			create table department(
+			id int,
+			name varchar(20)
+			);
+
+			create table employee(
+			id int primary key auto_increment,
+			name varchar(20),
+			sex enum('male','female') not null default 'male',
+			age int,
+			dep_id int
+			);
+
+			#插入数据
+			insert into department values
+			(200,'技术'),
+			(201,'人力资源'),
+			(202,'销售'),
+			(203,'运营');
+
+			insert into employee(name,sex,age,dep_id) values
+			('egon','male',18,200),
+			('alex','female',48,201),
+			('wupeiqi','male',38,201),
+			('yuanhao','female',28,202),
+			('nvshen','male',18,200),
+			('xiaomage','female',18,204)
+			;
+
+			select employee.id,employee.name,sex,age,department.name from employee,department
+			  where
+			employee.dep_id = department.id;
+
+
+			内连接：
+				只连接匹配的行
+				select * from employee inner join department on employee.dep_id=department.id;
+			左连接
+				显示左表的全部记录
+				select * from employee left join department on employee.dep_id=department.id;
+
+			右连接
+				select * from employee right join department on employee.dep_id=department.id;
+				select * from employee full join department on employee.dep_id=department.id;
+
+
+		select * from department inner join	(select employee.name,department.id from employee inner join department on employee.dep_id=department.id)as A
+
+
+			查询平均年龄在25岁以上的部门名
+			子查询
+			select * from department where id in (select dep_id from employee group by dep_id having avg(age) > 25)
+
+
+			select name from department
+					where id not in
+			(select dep_id from employee group by dep_id);
+
+			查询大于部门内平均年龄的员工名、年龄
+
+			select employee.name,employee.age from employee
+				inner join
+			(select dep_id,avg(age)as b from employee group by dep_id) as A
+			on employee.dep_id=A.dep_id
+			where employee.age > A.b;
+
+
+			create table emp(
+			id int not null unique auto_increment,
+			name varchar(20) not null,
+			sex enum('male','female') not null default 'male', #大部分是男的
+			age int(3) unsigned not null default 28,
+			hire_date date not null,
+			post varchar(50),
+			post_comment varchar(100),
+			salary double(15,2),
+			office int, #一个部门一个屋子
+			depart_id int
+			);
+			insert into emp(name,sex,age,hire_date,post,salary,office,depart_id) values
+			('egon','male',18,'20170301','老男孩驻沙河办事处外交大使',7300.33,401,1), #以下是教学部
+			('alex','male',78,'20150302','teacher',1000000.31,401,1),
+			('wupeiqi','male',81,'20130305','teacher',8300,401,1),
+			('yuanhao','male',73,'20140701','teacher',3500,401,1),
+			('liwenzhou','male',28,'20121101','teacher',2100,401,1),
+			('jingliyang','female',18,'20110211','teacher',9000,401,1),
+			('jinxin','male',18,'19000301','teacher',30000,401,1),
+			('成龙','male',48,'20101111','teacher',10000,401,1),
+
+			('歪歪','female',48,'20150311','sale',3000.13,402,2),#以下是销售部门
+			('丫丫','female',38,'20101101','sale',2000.35,402,2),
+			('丁丁','female',18,'20110312','sale',1000.37,402,2),
+			('星星','female',18,'20160513','sale',3000.29,402,2),
+			('格格','female',28,'20170127','sale',4000.33,402,2),
+
+			('张野','male',28,'20160311','operation',10000.13,403,3), #以下是运营部门
+			('程咬金','male',18,'19970312','operation',20000,403,3),
+			('程咬银','female',18,'20130311','operation',19000,403,3),
+			('程咬铜','male',18,'20150411','operation',18000,403,3),
+			('程咬铁','female',18,'20140512','operation',17000,403,3)
+			;
+
+			select emp.name from emp inner join
+			(select post,max(hire_date) as new_date from emp group by post)as A
+			on emp.post=A.post
+			where emp.hire_date = A.new_date;
+
+
+			select * from emp where hire_date in (select max(hire_date) from emp group by post);
+
+		2.索引
+
+
+
+			对于sql学习的简单总结
+
+			 建表
+				我们要保证数据的完整性和一致性
+				表是如何设计？
+				数据类型
+				约束
+					not null default
+					unique
+					primary key
+					auto_increment
+					foreign key
+				外键的变种：
+					多对一
+					多对多
+					一对一
+				单表查询
+					关键字的优先级
+					from
+					where
+					group by
+					having
+					select
+					order by
+					limit
+
+				多表查询
+					内连接
+					inner join
+					左连接
+					left join
+
+
+				子查询
+
+				多张表连接起来 ，最终还是单表查询
+
+				多表查询
+
+			 查表
+
+
+
+
+
+

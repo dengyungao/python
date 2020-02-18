@@ -1,0 +1,114 @@
+
+今日内容：
+        1.数据类型
+         数值类型：
+            默认是有符号(-128,127)
+            无符号的 （0,255）
+            unsigned：给当前的字段设置约束
+            create table t2(x tinyint unsigned);
+
+         浮点型：
+            float
+            double
+            decimal 超大浮点数
+
+        datatime 日期格式的数据
+
+        字符
+            char 存储长度固定     存储速度快，但是浪费空间
+            varchar 存储长度可变  存储速度慢，节省空间
+
+        enum枚举类型（二选一） + set集合类型（多选一或者多选多）
+            create table consumer(
+                id int unsigned,
+                name char(20),
+                sex enum('male','female') not null default 'male',
+                fav set('抽烟','喝酒','烫头')
+            );
+            insert into consumer(id,name,sex,fav) values (1,'alex','female','抽烟,烫头');
+            insert into consumer(id,name,sex) values (2,'alex2','female');
+
+        set 集合类型
+
+
+        2.表的约束
+
+            作用：保证数据的完整性和一致性
+            - not null 和default
+                create table tb2(
+                    # 如果插入空值，默认是2
+                    nid int not null default 2,
+                    num int not null
+                );
+                insert into tb1(nid) values(3);
+            - unique
+                不同的唯一的，
+                单列唯一
+                    只有一列是唯一
+
+                    create table department(
+                        id int,
+                        name char(10) unique
+                    );
+                    insert into department values(1,'it'),(2,'it2');
+
+
+                多列唯一
+                    每个字段都设置unique
+                    create table department2(
+                        id int unique,
+                        name char(10) unique
+                    );
+                    或
+                    create table department2(
+                        id int,
+                        name char(10),
+                        unique(id),
+                        unique(name)
+                    );
+                    # 每个字段插入的值都是不同的才能插入
+
+
+                    insert into department2 values(1,'it'),(2,'it2');
+                组合唯一
+                    create table department3(
+                        id int,
+                        name char(10),
+                        unique(id,name)
+
+                    );
+                    insert into department3 values(1,'it'),(2,'it');
+
+                    只要有一个字段不一样，都可以插入
+
+            primary key
+            主键 在现在sql版本中 只允许 表中有一个主键，通常主键是id
+
+
+            not null + unique
+
+            create table t2(
+
+                id int primary key,
+                name char(10) not null
+            );
+            create table t3(
+
+                id int not null unique,
+                name char(10) not null
+            );
+
+            auto_increment 自增长
+
+            create table student(
+                id int primary key auto_increment,
+                name char(20) not null
+            );
+            insert into student(name) values('nazha');
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+
+今日内容：
+    1.MySQL的介绍
+
+    Mysql软件
+        - 服务端软件
+            - 服务端程序
+            - 解析指令
+            - 对文件的操作
+        - 客户端软件
+            - 客户端程序
+            - 发送指令（sql语句）
+            - 解析指令
+
+    2.安装
+        1.安装mysql服务器软件
+        2.启动服务端程序
+        3.客户端连接服务端
+        4.sql语句*****
+
+        - 添加系统环境变量D:\mysql-5.7.23-winx64\bin
+        - 初始化 mysqld --initialize-insecure
+        - 开启服务端 mysqld
+        - 客户端连接服务端 mysql -uroot -p
+
+    3.安装window服务
+        以管理员身份运行cmd
+        - 杀死服务端的进程
+            tasklist |findstr mysql  查看进程号
+            taskkill /F /PID 进程号
+        - 安装windows服务（mysql服务端软件安装到windows）
+          D:\mysql-5.7.23-winx64\bin\mysqld --install
+          D:\mysql-5.7.23-winx64\bin\mysqld --remove
+        - 启动服务
+            net start mysql
+            net stop mysql
+    4.密码设置
+        修改root用户密码
+        update mysql.user set authentication_string =password('123') where User='root';
+        刷新权限
+        flush privileges;
+    5.破解密码
+        - 先把原来mysql服务端关闭
+        - 管理员身份运行执行：mysqld --skip-grant-tables
+        - 客户端连接服务端 此时修改密码，注意修改密码之后一定要刷新权限
+    6.创建用户
+        1.创建用户:
+        # 指定ip：192.118.1.1的mjj用户登录
+        create user 'mjj'@'192.118.1.1' identified by '123';
+
+        # 指定ip：192开头的mjj用户登录
+        create user 'mjj'@'192.%.%.%' identified by '123';
+
+        # 指定任何ip的mjj用户登录
+        create user 'mjj'@'%' identified by '123';
+
+    7.统一字符编码
+    8.sql语句
+        show databases; 查看所有的数据库
+        use db1; 进入数据库
+
+        create database db1; 创建数据库
+        use db1;
+
+        - 创建表
+        create table s1(id int,name char(10));
+        insert into s1(id,name) values (1,'alex'),(2,'娜扎');
+
+        - 对当前用户授权操作（root用户拥有）
+            #授权 mjj用户仅对db1.t1表有查询、插入和更新的操作
+            grant select,insert,update  on db1.t1  to "mjj"@'%';
+
+            # 表示有所有的权限，除了grant这个命令，这个命令是root才有的。mjj用户对db1下的t1表有任意操作
+            grant all privileges  on db1.t1 to "mjj"@'%';
+    
+            #mjj用户对db1数据库中的文件执行任何操作
+            grant all privileges  on db1.* to "mjj"@'%';
+
+            #mjj用户对所有数据库中文件有任何操作
+            grant all privileges  on *.*  to "mjj"@'%';
+
+            取消查询权限
+            revoke select  on db1.t1 from "mjj"@'%';
+

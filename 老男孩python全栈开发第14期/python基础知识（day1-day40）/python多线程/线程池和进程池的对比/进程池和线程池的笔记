@@ -1,0 +1,32 @@
+    1   同一个进程内的队列（多线程）
+         import queue
+         queue.Queue()  先进先出队列
+         queue.LifoQueue() 后进先出队列
+
+         queue.PriorityQueue()  优先级队列
+            优先级队列 q = queue.PriorityQueue()
+               q.put()  接收的是一个元组
+                        元组中第一个参数是：表示当前数据的优先级
+                        元组中第二个参数是：需要存放到队列中的数据
+                        优先级的比较（首先保证整个队列中，所有表示优先级的东西类型必须一致）
+                            如果都是int，比数值的大小
+                            如果都是str，比较字符串的大小（从第一个字符的ASCII码开始比较）
+
+     2   线程池
+         在一个池子里，放固定数量的线程，这些线程等待任务，一旦有任务来，就有线程自发的去执行任务。
+
+       concurrent.futures 这个模块是异步调用的机制
+       concurrent.futures 提交任务都是用submit()
+       for + submit() 多个任务的提交
+       shutdown()是等效于Pool中的close()+join()，是指不允许再继续向池中增加任务，然后让父进程(线程)等待池中所有进程执行完所有任务。
+
+     如何把多个任务扔进池中？
+     不同的方式提交多个任务（for+submit  或者 map），拥有不同的拿结果的方式
+     如果是for+submit的方式提交任务，拿结果用result方法
+     如果是map的方式提交任务，结果是一个生成器，采用__next__()的方式去拿结果
+
+
+     关于回调函数，不管是Pool进程池的方式，还是ProcessPoolExecutor的方式开启d的进程池，回调函数都是由父进程调用
+
+     关于回调函数，
+            hreadPoolExecutor，回调函数是谁调用？？？？

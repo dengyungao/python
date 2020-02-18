@@ -1,0 +1,11 @@
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:29] DEBUG debug message
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:30] INFO info message
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:31] WARNING warning message
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:32] ERROR error message
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:33] CRITICAL critical message
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:37] INFO username is：邓
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:69] DEBUG new debug message
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:70] INFO new info message
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:71] WARNING new warning message
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:72] ERROR new error message
+Sun, 24 Nov 2019 11:38:27 logging模块.py[line:73] CRITICAL new critical message

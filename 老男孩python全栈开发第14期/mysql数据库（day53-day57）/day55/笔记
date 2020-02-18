@@ -1,0 +1,156 @@
+今日内容：
+        1.外键
+            （1）创建被关联表（主表）
+            create table dep(
+                id int primary key auto_increment,
+                name varchar(20) not null,
+                descripe char(40) not null
+            );
+            create table test(
+                id int primary key auto_increment,
+                name varchar(20) not null,
+                descripe char(40) not null
+            );
+            create table emp(
+                id int primary key auto_increment,
+                name varchar(20) not null,
+                age int not null,
+                dep_id int,
+                test_id int,
+                constraint fk_dep foreign key(dep_id) references dep(id)
+                on delete cascade
+                on update cascade,
+                constraint fk_dep foreign key(test_id) references test(id)
+                on delete cascade
+                on update cascade
+
+
+            );
+
+
+
+        2.外键的变种
+            - 一对多或多对一
+            - 多对多
+
+                创建书
+
+                create table book(
+                    id int primary key auto_increment,
+                    name varchar(20)
+                );
+
+                create table author(
+                    id int primary key auto_increment,
+                    name varchar(20) not null
+
+                );
+
+                create table author2book(
+                    id int primary key auto_increment,
+                    book_id int not null,
+                    author_id int not null,
+                    constraint fk_book foreign key(book_id) references book(id)
+                    on delete cascade
+                    on update cascade,
+                    constraint fk_author foreign key(author_id) references author(id)
+                    on delete cascade
+                    on update cascade
+                );
+
+
+                insert into book(name) values
+                ('九阳神功'),
+                ('九阴真经'),
+                ('九阴白骨爪'),
+                ('独孤九剑'),
+                ('降龙十巴掌'),
+                ('葵花宝典')
+                ;
+                insert into author(name) values('egon'),('alex'),('wusir'),('yuanhao');
+
+            - 一对一
+
+
+        3.单表查询
+            重点中的重点：关键字的执行优先级
+                from
+                where
+                group by
+                having
+                select
+                distinct
+                order by
+                limit
+                1.找到表:from
+
+                2.拿着where指定的约束条件，去文件/表中取出一条条记录
+
+                3.将取出的一条条记录进行分组group by，如果没有group by，则整体作为一组
+
+                4.将分组的结果进行having过滤
+
+                5.执行select
+
+                6.去重
+
+                7.将结果按条件排序：order by
+
+                8.限制结果的显示条数
+
+            - group by
+                select A.c from (select post,max(salary)as c from employee group by post) as A;
+                使用分组
+                先sql_mode='ONLY_FULL_GROUP_BY'
+
+                分组之后只能查询分组的字段，如果想查询组内的其它字段的信息，必须要借助聚合函数
+
+                max()
+                min()
+                avg()
+                sum()
+                count()
+                查询岗位名以及岗位包含的所有员工名字
+                select post,group_concat(name) from employee group by post;
+
+
+                select post,avg(salary) from employee group by post having avg(salary) > 10000;
+
+                select post,group_concat(name),count(1)
+                    from employee
+                group by post having count(1)< 2;
+
+
+                select post,avg(salary) as A from employee group by post having A > 10000 order by A desc;
+
+                select * from employee order by age asc,id desc;
+        4.多表查询
+
+
+
+
+
+        {
+            status:200,
+            data:[
+
+
+
+            ]
+
+        }
+        https://free-api.heweather.com/s6/weather/now?location=beijing&key=4693ff5ea653469f8bb0c29638035976
+        jsonview
+
+
+
+
+
+
+
+
+
+
+
+
+

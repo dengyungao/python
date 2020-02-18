@@ -1,0 +1,81 @@
+课程安排：
+1. 今日内容
+    1. HTML标签：https://www.cnblogs.com/liwenzhou/p/7988087.html
+    2. 为什么要学前端？
+    3. 前端的内容
+        HTML       CSS                JS
+        裸体的人   穿上好看的衣服    动起来
+    4. HTML
+        1. HTMl定义
+            FTP    UPLOAD|ooxx.avi|1024  --> HTTP协议
+            HTML: 超文本标记语言
+        2. HTML标签的结构
+            HTML的结构
+                head  --> 给浏览器看的内容
+                    title  --> 标题
+                    style  --> CSS样式
+                    link   --> CSS文件
+                    script --> JS
+                    meta
+                        <meta charset="UTF-8">
+                        <meta http-equiv="refresh" content="2;URL=https://www.oldboyedu.com">
+
+                body  --> 给用户看的内容
+            HTML标签的语法：
+                <head 属性1=值1 属性2=值2></head>
+                <body></body>
+
+                <meta>
+        3. Body标签中的常用标签
+            1. 常用标签的分类
+                1. 独占一行的    块儿级标签
+                    1. h1~h6
+                    2. p
+                    3. div
+                    4. hr
+                    5. li
+                    6. tr
+                2. 在一行显示的  行内标签/内联标签
+                    1. a
+                    2. span
+                    3. img
+                    4. b/i/u/s
+            2. 标签的嵌套
+                标签可以嵌套标签
+                注意事项：
+                    1. 尽量不要用内联标签包块儿级标签
+                    2. p标签不能嵌套p标签
+                    3. p标签不能嵌套div标签
+            3. 获取用户输入的标签
+                1. form标签
+                    一个容器，包住所有获取用户输入的标签
+                    - action属性
+                    - method属性
+                    - enctype属性
+                2. input标签
+                    type
+                        text
+                        password
+                        email
+                        date
+                        checkbox
+                        radio
+                        button   --> 普通按钮 --> 通常用JS给它绑定事件
+                        submit   --> 提交按钮 --> 默认将form表单的数据提交
+                        reset    --> 重置按钮 --> 将当前form中的输入框都清空
+                3. select标签
+                4. textarea标签
+
+                5. form表单提交数据的注意事项
+                    {“k1”: "v1"}
+                    1. form标签必须把获取用户输入的标签包起来
+                    2. form不是from， form标签必须有action属性和method
+                    3. form中的获取用户输入的标签必须要有name属性
+
+2. 今日任务
+    1. 整理博客
+    2. 把课上的标签都自己敲一遍，用浏览器看一下效果
+3. 作业
+    手写一个注册页面
+4. 预习
+    https://www.cnblogs.com/liwenzhou/p/7999532.html

@@ -1,0 +1,10 @@
+2019-11-24 00:40:35,469 logging模块.py[line:73] DEBUG new debug message
+2019-11-24 00:40:35,470 logging模块.py[line:74] INFO new info message
+2019-11-24 00:40:35,470 logging模块.py[line:75] WARNING new warning message
+2019-11-24 00:40:35,470 logging模块.py[line:76] ERROR new error message
+2019-11-24 00:40:35,470 logging模块.py[line:77] CRITICAL new critical message
+2019-11-24 11:38:27,967 logging模块.py[line:69] DEBUG new debug message
+2019-11-24 11:38:27,968 logging模块.py[line:70] INFO new info message
+2019-11-24 11:38:27,968 logging模块.py[line:71] WARNING new warning message
+2019-11-24 11:38:27,969 logging模块.py[line:72] ERROR new error message
+2019-11-24 11:38:27,969 logging模块.py[line:73] CRITICAL new critical message
